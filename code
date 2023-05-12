@@ -1,0 +1,67 @@
+import pygame
+
+# Initialize the pygame library
+pygame.init()
+
+# Create the screen
+screen = pygame.display.set_mode((640, 480))
+
+# Create the cat
+cat = pygame.image.load("cat.png")
+
+# Create the mouse
+mouse = pygame.image.load("mouse.png")
+
+# Create the food
+food = pygame.image.load("food.png")
+
+# Set the cat's position
+cat_x = 200
+cat_y = 200
+
+# Set the mouse's position
+mouse_x = 100
+mouse_y = 100
+
+# Set the food's position
+food_x = 300
+food_y = 300
+
+# Create a loop to run the game
+while True:
+
+    # Check for events
+    for event in pygame.event.get():
+
+        # If the user clicks the mouse, move the cat
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            cat_x = event.pos[0]
+            cat_y = event.pos[1]
+
+    # Draw the background
+    screen.fill((255, 255, 255))
+
+    # Draw the cat
+    screen.blit(cat, (cat_x, cat_y))
+
+    # Draw the mouse
+    screen.blit(mouse, (mouse_x, mouse_y))
+
+    # Draw the food
+    screen.blit(food, (food_x, food_y))
+
+    # Update the display
+    pygame.display.flip()
+
+    # Check if the cat has eaten the food
+    if cat_x == food_x and cat_y == food_y:
+        print("The cat has eaten the food!")
+        break
+
+    # Check if the cat has collided with the mouse
+    if cat_x == mouse_x and cat_y == mouse_y:
+        print("The cat has collided with the mouse!")
+        break
+
+# Quit the game
+pygame.quit()
